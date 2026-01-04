@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Adamina' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .body {}
+
+        .title {
+            font-family: 'Adamina';
+            background-color: #e5e5e5;
+            padding: 15px;
+            text-align: center;
+            font-size: 10px;
+            height: 90px;
+            border-radius: 5px;
+            border-style: solid;
+        }
+
+        .subheader {
+            background-color: #ccccb3;
+			border-style: ridge;
+            color: black;
+            font-size: 15px;
+            font-weight: bold;
+            height: 50px;
+            width: 218%;
+            margin-left: -15px;
+            margin-top: -15px;
+            padding: 15px;
+        }
+
+        .right {
+            overflow: auto;
+            background-color: #cccccc;
+            height: 100px;
+            border-radius: 4px;
+        }
+
+        .menu {
+            float: right;
+            margin-top: 20px;
+            margin-right: 25px;
+            border-radius: 15px;
+            border-style: solid;
+            word-wrap: break-word;
+            background-color: #e6e6e6;
+            padding: 8px;
+            display: block;
+            width: 65%;
+            height: 430px;
+            color: black;
+        }
+
+        .left {
+            font-size: 13px;
+            background-color: #f0f3ed;
+            margin-top: 20px;
+            margin-left: 20px;
+            width: 30%;
+            height: 430px;
+            padding: 15px;
+            border-style: solid;
+            overflow-x: scroll;
+        }
+
+        .container {
+            position: relative;
+            width: 50%;
+            max-width: 300px;
+        }
+
+        input[type=text],
+        select {
+            width: 200%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=date] {
+            width: 200%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=datetime-local] {
+            width: 200%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=Button] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: center;
+        }
+
+        input[type=Button]:hover {
+            background-color: #45a049;
+        }
+
+        @media only screen and (max-width: 620px) {
+
+            /* For mobile phones: */
+            .menu,
+            .main,
+            .left {
+                width: 100%;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #ccccb3;
+            border-radius: 4px;
+            border: 1px solid black;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a,
+        .dropbtn {
+            display: inline-block;
+            color: black;
+            text-align: center;
+            padding: 13px 36px;
+            text-decoration: none;
+        }
+
+        li a:hover,
+        .dropdown:hover .dropbtn {
+            background-color: #b8b894;
+
+        }
+
+        li.dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border: 1px solid black;
+            border-radius: 4px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ccccb3;
+            color: black;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Style the tab */
+        .tab {
+            float: left;
+            border: 1px solid #ccc;
+            background-color: #ccccb3;
+            width: 15%;
+            height: 390px;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            display: block;
+            background-color: inherit;
+            color: black;
+            padding: 22px 16px;
+            width: 100%;
+            border: none;
+            outline: none;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 13px;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #b8b894;
+        }
+
+        /* Create an active/current "tab button" class */
+        .tab button.active {
+            background-color: #999966;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            float: left;
+            padding: 0px 12px;
+            border: 1px solid #ccc;
+            width: 85%;
+            border-left: none;
+            height: 390px;
+            background-color: #ebebe1;
+            overflow-x: scroll;
+        }
+
+        .tabcontent p {
+            margin-top: 20px;
+            margin-left: 20px;
+            background-color: white;
+            padding: 8px;
+            display: block;
+            width: 92%;
+            height: 280px;
+            color: black;
+            border-radius: 5px;
+            border-style: solid;
+            overflow-x: scroll;
+			user-select: all;
+        }
+
+        td {
+            border: 1px solid #999;
+            padding: 0.6rem;
+            background-color: white;
+            text-align: center;
+            font-size: 13px;
+            width: 50%;
+        }
+
+        th {
+            border: 1px solid #999;
+            padding: 0.6rem;
+            text-align: center;
+            font-size: 13px;
+            width: 50%;
+            background-color: #ccc
+        }
+		
+		.animbutton {
+  padding: 10px 18px;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-left: 200px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #996633;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 9px #999;
+}
+
+.animbutton:hover {background-color: #996633}
+
+.animbutton:active {
+  background-color: #996633;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 60%;
+  height: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+		
+    </style>
+    <script>
+        function testVariable() {
+            debugger	
+            var strText = document.getElementById("year").value;
+            var strText1 = document.getElementById("event").value;
+			var strText2 = document.getElementById("eventType").value;
+			var msgevent = document.getElementById("msgevent").value;
+			var msgeventType = document.getElementById("msgeventType").value;
+			var strText3 = document.getElementById("msg").value;
+			var amsg = document.getElementById("amsg").value;
+			var strText6 = document.getElementById("fname").value;
+			var strText8 = document.getElementById("lname").value;
+			var strText9 = document.getElementById("dob").value;
+			var strdobyear = strText9.substring(0, 4);
+			var strdobmonth = strText9.substring(5, 7);
+			var strdobday = strText9.substring(8, 10);
+			var strdob = strdobyear + strdobmonth + strdobday;
+			var ptdob = strdobday + '/' + strdobmonth + '/' + strdobyear;
+			var strText15 = document.getElementById("sex").value;
+			var race = document.getElementById("race").value;
+			var strText10 = document.getElementById("add1").value;
+			var strText11 = document.getElementById("add2").value;
+			var strText12 = document.getElementById("city").value;
+			var strText13 = document.getElementById("state").value;
+			var strText14 = document.getElementById("zip").value;
+			var homephone = document.getElementById("homephone").value;
+			var mobilephone = document.getElementById("mobilephone").value;
+			var email = document.getElementById("email").value;
+			var workphone = document.getElementById("workphone").value;
+			var wphext = document.getElementById("wphext").value;
+			var maritalstatus = document.getElementById("maritalstatus").value;
+			var accountno = document.getElementById("accountno").value;
+			var ssnno = document.getElementById("ssnno").value;
+			var location = document.getElementById("location").value;
+			var admitdate = document.getElementById("admitdate").value;
+            var admyear = admitdate.substring(0, 4);
+            var admmonth = admitdate.substring(5, 7);
+            var admday = admitdate.substring(8, 10);
+            var admhour = admitdate.substring(11, 13);
+            var admmins = admitdate.substring(14, 16);
+			var admHourinMin = admhour*60;
+			var admTotalMins = (+admHourinMin) + (+admmins);
+            var admitdatetime = admyear + admmonth + admday + admhour + admmins;
+            var dischargedate = document.getElementById("dischargedate").value;
+            var disyear = dischargedate.substring(0, 4);
+            var dismonth = dischargedate.substring(5, 7);
+            var disday = dischargedate.substring(8, 10);
+            var dishour = dischargedate.substring(11, 13);
+            var dismins = dischargedate.substring(14, 16);
+			var disHourinMin = dishour*60;
+			var disTotalMins = (+disHourinMin) + (+dismins);
+            var dischargedatetime = disyear + dismonth + disday + dishour + dismins;
+			var visitstatus = document.getElementById("visitstatus").value;			
+			var diff = disTotalMins - admTotalMins;
+			
+			
+			var ResultSIU = ' ' + ' ' +
+			' ' + '<b>MSH</b>|^~\\&|MILLENNIUM|ATLN_NJ|STAR|HBOC|' + strText +'||' + strText1 + '^' + strText2 + '|' + strText3 + '||2.3|' + '<br>' + ' ' + ' ' +		
+			'<b>SCH</b>|' + accountno + '^HNAMSCHEVID|||||^^^^Abd Pain|PCP Same Day^^^PCP Same Day||' + diff + '|MIN|' + '^^' + diff + '^' + admitdatetime + '00' + '^' + dischargedatetime + '00' + '|||||^SYSTEM^SYSTEM||||^SYSTEM^SYSTEM|||||' + visitstatus + '<br>' + ' ' + ' ' +'<b>PID</b>|1||' + accountno + '||' + strText8 + '^' + strText6 + '^' + '^^^^^CURRENT||' + strdob + '|' + strText15 + '||' + race + '|' + strText10 + '^' + strText11 + '^' + strText12 + '^' + strText13 + '^' + strText14 + '^' + 'US||' + homephone + '^HOME' + '|' + '|ENG|' + maritalstatus +'||' +accountno + '^^^ARMC_FIN|' + ssnno + '|' + '<br>' + ' ' + ' ' + '<b>PV1</b>|1|O|||||||||' + location + '||||||||||||||||||||||||||||' + location + '|||||' + admitdatetime + '<br>' + ' ' + ' ' + '<b>PV2</b>||||||||' + admitdatetime +'<br>' + ' ' + ' ' + '<b>RGS</b>|1|' + '<br>' + ' ' + ' ' + '<b>AIL</b>|1||' + location + '^^^' + location + '^^^' + location + '|Appointment|' + '<br>' + ' ' + ' ' + '<b>AIP</b>|1||2499^Hoey^John^E^^MD^^^ACMC PROV ID^PRSNL^^^ORGDOC~1407909021^Hoey^John^E^^MD^^^National Provider Number^PRSNL^^^National Provider Identifier|Resource||' + admitdatetime + '00' +'|0|MIN|' + diff + '|MIN||' + visitstatus ;
+
+            document.getElementById("p1").innerHTML = ResultSIU;
+			
+			var ResultADT = ' ' + ' ' +
+			' ' + '<b>MSH</b>|^~\&|CERNADT|ATLN_NJ|CLOVER|ENGINE|' + strText +'||' + msgevent + '^' + msgeventType + '|' + amsg + '||2.3' +'<br>' + ' ' + ' ' +		
+			'<b>EVN</b>|' + msgeventType + '|' + strText +'|||^Gallagher^Kathleen^E^^IT Practice Manager^^^^PRSNL' + '<br>' + ' ' + ' ' + '<b>PID</b>|1||' + accountno + '||' + strText8 + '^' + strText6 + '^^^^^CURRENT||' + strdob + '|' + strText15 + '||' + race + '|' + strText10 + '^' + strText11 + '^' + strText12 + '^' + strText13 + '^' + strText14 + '^' + 'US^C||' + homephone + '^HOME^Telephone||ENG|||' +accountno + '|' + ssnno + '|' +'<br>' + ' ' + ' ' + '<b>PV1</b>|1|O|' + location + '^^^' + location + '^^^' + location + '||||2499^Hoey^John^E^^^^^ACMC PROV ID^^^^ORGDOC~1407909021^Hoey^John^E^^^^^National Provider Number^^^^National Provider Identifier|||||||||||PR||09|||||||||||||||||||' + location + '|||||' + admitdatetime + '00' + '|' + '<br>' + ' ' + ' ' +'<b>PV2</b>||||||||' + admitdatetime + '00' + '<br>' + ' ' + ' ' +'<b>ZVI</b>|||||||||||||||' + strText + '<br>' + ' ' + ' ' +'<b>ZBE</b>|||||N' + '<br>' + ' ' + ' ' +'<b>GT1</b>|1|' + accountno + '^^^STAR_MRN|' + strText8 + '^' + strText6 + '^^^^^CURRENT||' + strText10 + '^' + strText11 + '^' + strText12 + '^' + strText13 + '^' + strText14 + '^' + 'US^C|' + homephone + '^HOME^Telephone||' + strdob + '|' + strText15 + '|Household|S|' + '<br>' + ' ' + ' ' + '<b>ZGI</b>|||S' + '<br>' + ' ' + ' ' + '<b>IN1</b>|1|607967^MEDICARE^^^MEDICARE|1001065|MEDICARE B|730 CHESTNUT STREET^^CHATTANOOGA^TN^17050-0000^US^business|||||5483287|Unknown|' + strText + '|||Medicare Part B|TEST^DEMO^A|S|19560224|6221 NEW ST^^DEMO LANDING^NJ^08330-3769^US^C^^ATLANTIC~demouser@gmail.com^^^^^^EMAIL|Yes||1|||||||' + strText + '||||||02|||||||Unknown|F||||||29ZSE529964' +'<br>' + ' ' + ' ' +'<b>IN2</b>|||||||||||||||||||||||||900O90O||||||||||||||||||||||||||||||||||||900O90O||(721)000-0000^HOME^Telephone|||||||||S' + '<br>' + ' ' + ' ' + '<b>ZNI</b>|' + strText6 + ' ' + strText8 + '||S||||||Medical Service Plan|||' + strText + '<br>' + ' ' + ' ' + '<b>ZEI</b>|1|';
+			document.getElementById("p2").innerHTML = ResultADT;	
+
+            var summary = '<br/>' + ' ' + ' ' + '<b><center>Patient Details:</center></b>' + '<br/>' + ' ' + ' ' +
+                ' ' + '<center>' + '<table>' +
+                '<thead>' +
+                '<tr>' +
+                '<th>' + '<b>' + 'Name' + '</b>' + '</th>' +
+                '<th>' + '<b>' + 'Value' + '</b>' + '</th>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'Message Event:' + '</b>' + '</td>' +
+                '<td>' + strText1 + '^' + strText2 + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'SIU Message Control ID:' + '</b>' + '</td>' +
+                '<td>' + strText3 + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'ADT Message Control ID:' + '</b>' + '</td>' +
+                '<td>' + amsg + '</td>' +
+                '</tr>' +				
+                '<tr>' +
+                '<td>' + '<b>' + 'Patient ID:' + '</b>' + '</td>' +
+                '<td>' + accountno + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'Patient Name:' + '</b>' + '</td>' +
+                '<td>' + strText6 + ' ' + strText8 + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'Date of Birth (DD/MM/YYYY):' + '</b>' + '</td>' +
+                '<td>' + ptdob + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'Location:' + '</b>' + '</td>' +
+                '<td>' + location + '</td>' +
+                '</tr>' +
+                '</tbody>' +
+                '</table>' + '</center>';
+            document.getElementById("Notes").innerHTML = summary;
+
+
+            var network = '<br/>' + ' ' + ' ' + '<b><center>Demo Network Details:</center></b>' + '<br/>' + ' ' + ' ' +
+                ' ' + '<center>' + '<table>' +
+                '<thead>' +
+                '<tr>' +
+                '<th>' + '<b>' + 'Message Type' + '</b>' + '</th>' +
+                '<th>' + '<b>' + 'IP Address' + '</b>' + '</th>' +
+                '<th>' + '<b>' + 'Port' + '</b>' + '</th>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'SIU:' + '</b>' + '</td>' +
+                '<td>' + '10.8.1.24' + '</td>' +
+                '<td>' + '11133' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'ADT:' + '</b>' + '</td>' +
+                '<td>' + '10.8.1.24' + '</td>' +
+                '<td>' + '11132' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '</tbody>' +
+                '</table>' + '</center>';
+            document.getElementById("Network").innerHTML = network;
+			
+        }
+    </script>
+</head>
+<body style="background-color: FloralWhite;">
+
+    <div class="title" style="background-color: #e6ebe1">
+        <h1>AtlantiCare Health System</h1>
+		
+    </div>
+
+    <ul>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn"><i class="fa fa-plus-circle" style="margin-right:10px; margin-bottom: 10px;"></i>Geisinger</a>
+            <div class="dropdown-content">
+                <a href="Geisinger.html">Geisinger</a>
+                <a href="Geisinger_Merge.html">Geisinger - Merge</a>
+            </div>
+		</li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn"><i class="fa fa-plus-circle" style="margin-right:10px; margin-bottom: 10px;"></i>UPMC EU</a>
+            <div class="dropdown-content">
+                <a href="EU - ADT Inpatient.html">Inpatient - Multicampus</a>
+                <a href="#">Outpatient - Multicampus</a>
+            </div>
+		</li>	
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn"><i class="fa fa-plus-circle" style="margin-right:10px; margin-bottom: 10px;"></i>Inspira</a>
+            <div class="dropdown-content">
+                <a href="Urgent Care.html">Urgent Care</a>
+                <a href="Inspira Medical Group.html">IMG</a>
+                <a href="Urgent Care Covid Result.html">UC Covid</a>
+                <a href="IMG Covid Result.html">IMG Covid</a>
+            </div>
+        </li>
+		<li style="background-color:#999966"><a href="AHS.html"><i class="fa fa-plus-circle"style="margin-right:10px; margin-bottom: 10px;"></i><b>AHS</b></a></li>
+		<li><button class="animbutton" id="myBtn">How to use the tool</button></li>
+		
+		<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p><center><b>Prerequisites</b></center></p>
+<p><b>(1)</b> OpenVPN should always be connected when sending message using the SmartHL7 tool.</p>
+<p><b>(2)</b> Kindly fill in all mandatory fields else the appointments may not be created as expected.</p>
+<p><b>(3)</b> Always refersh the screen to create new appointments.</p>
+  </div>
+
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+		
+		
+    </ul>
+
+    <div class="menu">
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'SIU')" id="defaultOpen"><i class="fa fa-calendar-check-o" style="margin-right:10px;"></i><b>SIU</b></button>
+            <button class="tablinks" onclick="openCity(event, 'ADT')"><i class="fa fa-user-circle-o" style="margin-right:10px;"></i><b>ADT</b></button>
+            <button class="tablinks" onclick="openCity(event, 'Notes')"><i class="fa fa-file-text-o" style="margin-right:10px;"></i><b>Notes</b></button>
+            <button class="tablinks" onclick="openCity(event, 'Network')"><i class="fa fa-sitemap" style="margin-right:10px;"></i><b>Network</b></button>
+        </div>
+
+        <div id="SIU" class="tabcontent">
+            <p id="p1" style="font-size: 13px;"></p>
+        </div>
+        <div id="ADT" class="tabcontent">
+            <p id="p2" style="font-size: 13px;"></p>
+        </div>
+        <div id="Notes" class="tabcontent"></div>
+        <div id="Network" class="tabcontent"></div>
+
+        <script>
+            function openCity(evt, cityName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(cityName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+
+            // Get the element with id="defaultOpen" and click on it
+            document.getElementById("defaultOpen").click();
+        </script>
+    </div>
+
+
+  <div class="left">
+    <form class="container" >
+		<div class="subheader"><i class="fa fa-envelope-o" style="margin-right:10px;"></i>Message Header</div><br/>
+		<label for="createdon"><b>MSH Date/Time:</b></label>
+        <input type="text" name="createdon" id="year">
+		<script type="text/javascript">
+	var year = new Date();
+	document.getElementById("year").value	
+   =(checkZero(year.getFullYear()+ ""))
+	+(checkZero(year.getMonth()+ 1 + ""))				
+	+(checkZero(year.getDate()+ ""))
+	+(checkZero(year.getHours()+ "")) 
+	+ (checkZero(year.getMinutes()+ "")) 
+	+(checkZero(year.getSeconds()+ ""));
+
+	function checkZero(data){
+		if(data.length == 1){
+		data = "0" + data;
+		}
+			return data;
+			}
+</script>
+ <label for="event"><b>Schedule Message Event:</b></label>
+ <select id="event" name="Event">
+    <option value="SIU">SIU</option>
+  </select><br/>
+  <label for="eventType"><b>Schedule Event Type:</b></label>
+ <select id="eventType" name="Event">
+    <option value="S26">S26</option>
+  </select><br/>
+      <label for="messagecontrollid"><b>Schedule Control ID:</b></label>
+      <input name="messagecontrollid" id="msg" type="text" /><br/>
+	
+<script type="text/javascript">
+	var msg = new Date();
+	document.getElementById("msg").value="SAHS" + (msg.getMonth()+ 1 + "")+(msg.getDate())
+										+(msg.getFullYear()+ "")+(msg.getHours()) + (msg.getMinutes()+ "") +(msg.getSeconds()+ ""); 
+</script>
+ <label for="msgevent"><b>Patient Message Event:</b></label>
+ <select id="msgevent" name="msgevent">
+    <option value="ADT">ADT</option>
+  </select><br/>
+  <label for="msgeventType"><b>Patient Event Type:</b></label>
+ <select id="msgeventType" name="msgeventType">
+    <option value="A04">A04</option>
+  </select><br/>
+      <label for="amsg"><b>Patient Control ID:</b></label>
+      <input name="amsg" id="amsg" type="text" /><br/>
+	
+<script type="text/javascript">
+	var amsg = new Date();
+	document.getElementById("amsg").value="IMGA" + (amsg.getMonth()+ 1 + "")+(amsg.getDate())
+										+(amsg.getFullYear()+ "")+(amsg.getHours()) + (amsg.getMinutes()+ "") +(amsg.getSeconds()+ ""); 
+</script>
+      <label for="admitdate"><b>Admit Date/Time:</b></label>
+      <input type="datetime-local" id="admitdate" name="admitdate"><br/>
+      <label for="dischargedate"><b>Discharge Date/Time:</b></label>
+      <input type="datetime-local" id="dischargedate" name="dischargedate"><br/>
+      <label for="visitstatus"><b>Visit Status:</b></label>
+      <select id="visitstatus" name="visitstatus">
+		<option value="SCHEDULED">Scheduled</option>
+		<option value="BOOKED">Booked</option>
+		<option value="CONFIRMED">Confirmed</option>
+		<option value="ATTENDED">Attended</option>	
+		<option value="CHECKED IN">Checked In</option>
+		<option value="CHECKED OUT">Checked Out</option>		
+		<option value="NO SHOW">No Show</option>
+		<option value="CANCELLED">Cancelled</option>
+      </select><br/>	  
+	  <br/>
+	  <div class="subheader"><i class="fa fa-user-o" style="margin-right:10px;"></i>Patient Details</div><br/>	
+	  <label for="fname"><b>First Name:</b></label>
+      <input name="fname" id="fname" type="text"/><br/>
+	  <label for="lname"><b>Last Name:</b></label>
+      <input name="lname" id="lname" type="text" /><br/>
+	  <label for="dob"><b>Date of Birth:</b></label>
+	  <input type="date" id="dob" name="dob"></br/>
+	  <label for="sex"><b>Gender:</b></label>
+			<select id="sex" name="sex">
+				<option value="M">Male</option>
+				<option value="U">Unknown</option>
+				<option value="F">Female</option>
+			</select><br/>
+	  <label for="race"><b>Race:</b></label>
+			<select id="race" name="race">			
+				<option value="WHITE">White</option>
+				<option value="GUACHA">Guamanian or Chamorro</option>
+				<option value="ASIAN">Asian</option>
+				<option value="Blck/African Amer. and Amer. Ind/Alaskan">Blck/African Amer. and Amer. Ind/Alaskan</option>
+				<option value="CHINESE">Chinese</option>
+				<option value="BLACK">Black or African American</option>
+				<option value="AMIND">American Indian or Alaska Native</option>
+				<option value="HISPN">Hispanic</option>
+				<option value="OTHER PACIFIC ISLANDER">Other Pacific Islander</option>
+				<option value="FILIPINO">Filipino</option>
+				<option value="WHIBLACAFRIAME">White and Black or African American</option>
+				<option value="OTHER">Other Race</option>
+				<option value="JAPANESE">Japanese</option>
+				<option value="DECLINED TO ANSWER">Declined to Answer</option>
+				<option value="WHIAMERINDALASNAT">White and American Indian or Alaskan Nat</option>
+				<option value="KOREAN">Korean</option>
+				<option value="PCFIS">Native Hawaiian or Pacific Islander</option>
+				<option value="WHITEASIAN">White and Asian</option>
+				<option value="SAMOAN">Samoan</option>
+				<option value="U">Unknown</option>
+			</select><br/>				
+	  <label for="add1"><b>Address Line 1:</b></label>
+      <input name="add1" id="add1" type="text"/><br/>
+	  <label for="add2"><b>Address Line 2:</b></label>
+      <input name="add2" id="add2" type="text"/><br/>
+	  <label for="city"><b>City:</b></label>
+      <input name="city" id="city" type="text"  /><br/>
+	  <label for="state"><b>State:</b></label>
+      <input name="state" id="state" type="text"  /><br/>
+	  <label for="zip"><b>Zip:</b></label>
+      <input name="zip" id="zip" type="text"  /><br/>
+	  <label for="homephone"><b>Home Phone:<b></label>
+      <input name="homephone" id="homephone" type="text"  /><br/>
+	  <label for="mobilephone"><b>Mobile Phone:<b></label>
+      <input name="mobilephone" id="mobilephone" type="text"  /><br/>
+	  <label for="email"><b>Email:<b></label>
+      <input name="email" id="email" type="text"  /><br/>
+	  <label for="workphone"><b>Work Phone:<b></label>
+      <input name="workphone" id="workphone" type="text"  /><br/>
+	  <label for="wphext"><b>Work Phone Extension:<b></label>
+      <input name="wphext" id="wphext" type="text"  /><br/>
+ 	  <label for="maritalstatus"><b>Marital Status:</b></label>
+	  <select id="maritalstatus" name="maritalstatus">
+				<option value="M">Married</option>
+				<option value="D">Divorced</option>
+				<option value="S">Single</option>
+				<option value="U">Unknown</option>
+				<option value="W">Widow</option>
+				<option value="P">Life Partner</option>
+	  </select><br/>
+	  <label for="accountno"><b>Account Number:<b></label>
+      <input name="accountno" id="accountno" type="text" /><br/>
+	  <label for="ssnno"><b>SSN Number:<b></label>
+      <input name="ssnno" id="ssnno" type="text" /><br/><br/>
+	  <div class="subheader"><i class="fa fa-hospital-o" style="margin-right: 10px;"></i>Patient Visit</div><br/>
+	  <label for="location"><b>Location:</b></label>
+			<select id="location" name="location">
+					<option value="APG Bariat HAMM">APG Bariat HAMM</option>
+					<option value="JEFF NEURO AC">JEFF NEURO AC</option>
+            </select><br/><br/>
+            <input id="btn1" type="Button" value="Submit"  onclick="testVariable()">
+    </form>
+  </div>
+</body>
+</html>

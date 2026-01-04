@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Adamina' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .body {}
+
+        .title {
+            font-family: 'Adamina';
+            background-color: #e5e5e5;
+            padding: 15px;
+            text-align: center;
+            font-size: 10px;
+            height: 90px;
+            border-radius: 5px;
+            border-style: solid;
+        }
+
+        .subheader {
+            background-color: #ccccb3;
+			border-style: ridge;
+            color: black;
+            font-size: 15px;
+            font-weight: bold;
+            height: 50px;
+            width: 218%;
+            margin-left: -15px;
+            margin-top: -15px;
+            padding: 15px;
+        }
+
+        .right {
+            overflow: auto;
+            background-color: #cccccc;
+            height: 100px;
+            border-radius: 4px;
+        }
+
+        .menu {
+            float: right;
+            margin-top: 20px;
+            margin-right: 25px;
+            border-radius: 15px;
+            border-style: solid;
+            word-wrap: break-word;
+            background-color: #e6e6e6;
+            padding: 8px;
+            display: block;
+            width: 65%;
+            height: 430px;
+            color: black;
+        }
+
+        .left {
+            font-size: 13px;
+            background-color: #f0f3ed;
+            margin-top: 20px;
+            margin-left: 20px;
+            width: 30%;
+            height: 430px;
+            padding: 15px;
+            border-style: solid;
+            overflow-x: scroll;
+        }
+
+        .container {
+            position: relative;
+            width: 50%;
+            max-width: 300px;
+        }
+
+        input[type=text],
+        select {
+            width: 200%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=date] {
+            width: 200%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=datetime-local] {
+            width: 200%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=Button] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: center;
+        }
+
+        input[type=Button]:hover {
+            background-color: #45a049;
+        }
+
+        @media only screen and (max-width: 620px) {
+
+            /* For mobile phones: */
+            .menu,
+            .main,
+            .left {
+                width: 100%;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #ccccb3;
+            border-radius: 4px;
+            border: 1px solid black;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a,
+        .dropbtn {
+            display: inline-block;
+            color: black;
+            text-align: center;
+            padding: 13px 36px;
+            text-decoration: none;
+        }
+
+        li a:hover,
+        .dropdown:hover .dropbtn {
+            background-color: #b8b894;
+
+        }
+
+        li.dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border: 1px solid black;
+            border-radius: 4px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ccccb3;
+            color: black;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Style the tab */
+        .tab {
+            float: left;
+            border: 1px solid #ccc;
+            background-color: #ccccb3;
+            width: 15%;
+            height: 390px;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            display: block;
+            background-color: inherit;
+            color: black;
+            padding: 22px 16px;
+            width: 100%;
+            border: none;
+            outline: none;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 13px;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #b8b894;
+        }
+
+        /* Create an active/current "tab button" class */
+        .tab button.active {
+            background-color: #999966;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            float: left;
+            padding: 0px 12px;
+            border: 1px solid #ccc;
+            width: 85%;
+            border-left: none;
+            height: 390px;
+            background-color: #ebebe1;
+            overflow-x: scroll;
+        }
+
+        .tabcontent p {
+            margin-top: 20px;
+            margin-left: 20px;
+            background-color: white;
+            padding: 8px;
+            display: block;
+            width: 92%;
+            height: 280px;
+            color: black;
+            border-radius: 5px;
+            border-style: solid;
+            overflow-x: scroll;
+			user-select: all;
+        }
+
+        td {
+            border: 1px solid #999;
+            padding: 0.6rem;
+            background-color: white;
+            text-align: center;
+            font-size: 13px;
+            width: 50%;
+        }
+
+        th {
+            border: 1px solid #999;
+            padding: 0.6rem;
+            text-align: center;
+            font-size: 13px;
+            width: 50%;
+            background-color: #ccc
+        }
+    </style>
+    <script>
+        function testVariable() {
+            debugger
+            var strText = document.getElementById("year").value;
+            var strText1 = document.getElementById("event").value;
+			var strText2 = document.getElementById("eventType").value;
+			var strText3 = document.getElementById("msg").value;
+			var strText4 = document.getElementById("mrn").value;
+			var strText5 = document.getElementById("mrn").value;
+			var strText6 = document.getElementById("fname").value;
+			var strText7 = document.getElementById("mname").value;
+			var strText8 = document.getElementById("lname").value;
+			var strText9 = document.getElementById("dob").value;
+			var strdobyear = strText9.substring(0, 4);
+			var strdobmonth = strText9.substring(5, 7);
+			var strdobday = strText9.substring(8, 10);
+			var strdob = strdobyear + strdobmonth + strdobday;
+			var ptdob = strdobday + '/' + strdobmonth + '/' + strdobyear;
+			var strText10 = document.getElementById("add1").value;
+			var strText11 = document.getElementById("add2").value;
+			var strText12 = document.getElementById("city").value;
+			var strText13 = document.getElementById("state").value;
+			var strText14 = document.getElementById("zip").value;
+			var strText15 = document.getElementById("sex").value;
+			var result = ' ' + ' ' +
+			' ' + '<b>MSH</b>|^~\\&|EPIC|GJSH|Certify|EXTERNAL|' + strText + '||' + strText1 + '^' + strText2 + '|' + strText3 + '|P|2.3' + '<br/>' + ' ' + ' ' +
+			' ' + '<b>PID</b>|1|' + strText4 + '|' + strText5 + '^EPIC' + '||' + strText8 + '^' + strText6 + '^' + strText7 
+			+ '||' + strdob + '|' + strText15 + '|||' + strText10 + '^' + strText11 + '^' + strText12 + '^' + strText13 + '^' + strText14 + '^USA^P^^1|||||||||||14|PA|||||||N';
+            document.getElementById("p2").innerHTML = result;
+			
+            var summary = '<br/>' + ' ' + ' ' + '<b><center>Patient Details:</center></b>' + '<br/>' + ' ' + ' ' +
+                ' ' + '<center>' + '<table>' +
+                '<thead>' +
+                '<tr>' +
+                '<th>' + '<b>' + 'Name' + '</b>' + '</th>' +
+                '<th>' + '<b>' + 'Value' + '</b>' + '</th>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'Message Event:' + '</b>' + '</td>' +
+                '<td>' + strText1 + '^' + strText2 + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'Message Control ID:' + '</b>' + '</td>' +
+                '<td>' + strText3 + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'Patient ID:' + '</b>' + '</td>' +
+                '<td>' + strText4 + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'Patient Name:' + '</b>' + '</td>' +
+                '<td>' + strText6 + ' ' + strText7 + ' ' + strText8 + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'Date of Birth (DD/MM/YYYY):' + '</b>' + '</td>' +
+                '<td>' + ptdob + '</td>' +
+                '</tr>' +
+                '</tbody>' +
+                '</table>' + '</center>';
+            document.getElementById("Notes").innerHTML = summary;
+
+
+            var network = '<br/>' + ' ' + ' ' + '<b><center>Demo Network Details:</center></b>' + '<br/>' + ' ' + ' ' +
+                ' ' + '<center>' + '<table>' +
+                '<thead>' +
+                '<tr>' +
+                '<th>' + '<b>' + 'Message Type' + '</b>' + '</th>' +
+                '<th>' + '<b>' + 'IP Address' + '</b>' + '</th>' +
+                '<th>' + '<b>' + 'Port' + '</b>' + '</th>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'ADT:' + '</b>' + '</td>' +
+                '<td>' + '10.8.1.24' + '</td>' +
+                '<td>' + '21111' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '</tbody>' +
+                '</table>' + '</center>';
+            document.getElementById("Network").innerHTML = network;
+			
+			
+        }
+    </script>
+</head>
+<body style="background-color: FloralWhite;">
+
+    <div class="title" style="background-color: #e6ebe1">
+        <h1>Geisinger Health System</h1>
+    </div>
+
+    <ul>
+        <li class="dropdown" style="background-color:#999966">
+            <a href="javascript:void(0)" class="dropbtn"><i class="fa fa-plus-circle"style="margin-right:10px; margin-bottom: 10px;"></i><b>Geisinger</b></a>
+            <div class="dropdown-content">
+                <a href="Geisinger.html">Geisinger</a>
+                <a href="Geisinger_Merge.html">Geisinger - Merge</a>
+            </div>
+		</li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn"><i class="fa fa-plus-circle"style="margin-right:10px; margin-bottom: 10px;"></i>UPMC EU</a>
+            <div class="dropdown-content">
+                <a href="EU - ADT Inpatient.html">Inpatient - Multicampus</a>
+                <a href="#">Outpatient - Multicampus</a>
+            </div>
+		</li>	
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn"><i class="fa fa-plus-circle"style="margin-right:10px; margin-bottom: 10px;"></i>Inspira</a>
+            <div class="dropdown-content">
+                <a href="Urgent Care.html">Urgent Care</a>
+                <a href="Inspira Medical Group.html">IMG</a>
+                <a href="Urgent Care Covid Result.html">UC Covid</a>
+                <a href="IMG Covid Result.html">IMG Covid</a>
+            </div>
+        </li>
+		<li><a href="AHS.html"><i class="fa fa-plus-circle"style="margin-right:10px; margin-bottom: 10px;"></i>AHS</a></li>
+    </ul>
+
+
+
+    <div class="menu">
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'ADT')" id="defaultOpen"><i class="fa fa-user-circle-o" style="margin-right:10px;"></i><b>ADT</b></button>
+            <button class="tablinks" onclick="openCity(event, 'Notes')"><i class="fa fa-file-text-o" style="margin-right:10px;"></i><b>Notes</b></button>
+            <button class="tablinks" onclick="openCity(event, 'Network')"><i class="fa fa-sitemap" style="margin-right:10px;"></i><b>Network</b></button>
+        </div>
+
+        <div id="ADT" class="tabcontent">
+            <p id="p2" style="font-size: 13px;"></p>
+        </div>
+        <div id="Notes" class="tabcontent"></div>
+        <div id="Network" class="tabcontent"></div>
+
+        <script>
+            function openCity(evt, cityName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(cityName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+
+            // Get the element with id="defaultOpen" and click on it
+            document.getElementById("defaultOpen").click();
+        </script>
+    </div>
+
+
+  <div class="left">
+    <form class="container">
+		<label for="createdon"><b>MSH Date/Time:</b></label>
+        <input type="text" name="createdon" id="year">
+		<script type="text/javascript">
+	var year = new Date();
+	document.getElementById("year").value	
+   = (checkZero(year.getFullYear()+ ""))
+	+(checkZero(year.getMonth()+ 1 + ""))				
+	+(checkZero(year.getDate()+ ""))
+	+(checkZero(year.getHours()+ "")) 
+	+ (checkZero(year.getMinutes()+ "")) 
+	+(checkZero(year.getSeconds()+ ""));
+
+	function checkZero(data){
+		if(data.length == 1){
+		data = "0" + data;
+		}
+			return data;
+			}
+</script>
+ <label for="event"><b>Message Event:</b></label>
+ <select id="event" name="Event">
+    <option value="ADT">ADT</option>
+  </select><br/>
+  <label for="eventType"><b>Event Type:</b></label>
+ <select id="eventType" name="Event">
+    <option value="A04">A04</option>
+	<option value="A08">A08</option>
+  </select><br/>
+      <label for="messagecontrollid"><b>Control ID:</b></label>
+      <input name="messagecontrollid" id="msg" type="text" />
+	
+<script type="text/javascript">
+	var msg = new Date();
+	document.getElementById("msg").value=("T")+(msg.getMonth()+ 1 + "")+(msg.getDate())
+										+(msg.getFullYear()+ "")+(msg.getHours()) + (msg.getMinutes()+ "") +(msg.getSeconds()+ "");
+</script>
+	  <label for="mrn"><b>Patient ID:</b></label>
+      <input name="mrn" id="mrn" type="text" /><br/>
+	  <label for="fname"><b>First Name:</b></label>
+      <input name="fname" id="fname" type="text" /><br/>
+	  <label for="mname"><b>Middle Name:</b></label>
+      <input name="mname" id="mname" type="text" /><br/>
+	  <label for="lname"><b>Last Name:</b></label>
+      <input name="lname" id="lname" type="text" /><br/>
+	  <label for="dob"><b>Date of Birth:</b></label>
+	  <input type="date" id="dob" name="dob"></br/>
+	  <label for="sex"><b>Gender:</b></label>
+			<select id="sex" name="sex">
+				<option value="M">Male</option>
+				<option value="F">Female</option>
+			</select><br/>
+	  <label for="add1"><b>Address Line 1:</b></label>
+      <input name="add1" id="add1" type="text" /><br/>
+	  <label for="add2"><b>Address Line 2:</b></label>
+      <input name="add2" id="add2" type="text" /><br/>
+	  <label for="city"><b>City:</b></label>
+      <input name="city" id="city" type="text" /><br/>
+	  <label for="state"><b>State:</b></label>
+      <input name="state" id="state" type="text" /><br/>
+	  <label for="zip"><b>Zip:</b></label>
+      <input name="zip" id="zip" type="text" /><br/></br/>	  
+   <input id="btn1" type="Button" value="Submit" onclick="testVariable()">
+    </form>
+  </div>
+</body>
+</html>

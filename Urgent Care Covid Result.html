@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Adamina' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .body {}
+
+        .title {
+            font-family: 'Adamina';
+            background-color: #e5e5e5;
+            padding: 15px;
+            text-align: center;
+            font-size: 10px;
+            height: 90px;
+            border-radius: 5px;
+            border-style: solid;
+        }
+
+        .subheader {
+            background-color: #ccccb3;
+			border-style: ridge;
+            color: black;
+            font-size: 15px;
+            font-weight: bold;
+            height: 50px;
+            width: 218%;
+            margin-left: -15px;
+            margin-top: -15px;
+            padding: 15px;
+        }
+
+        .right {
+            overflow: auto;
+            background-color: #cccccc;
+            height: 100px;
+            border-radius: 4px;
+        }
+
+        .menu {
+            float: right;
+            margin-top: 20px;
+            margin-right: 25px;
+            border-radius: 15px;
+            border-style: solid;
+            word-wrap: break-word;
+            background-color: #e6e6e6;
+            padding: 8px;
+            display: block;
+            width: 65%;
+            height: 430px;
+            color: black;
+        }
+
+        .left {
+            font-size: 13px;
+            background-color: #f0f3ed;
+            margin-top: 20px;
+            margin-left: 20px;
+            width: 30%;
+            height: 430px;
+            padding: 15px;
+            border-style: solid;
+            overflow-x: scroll;
+        }
+
+        .container {
+            position: relative;
+            width: 50%;
+            max-width: 300px;
+        }
+
+        input[type=text],
+        select {
+            width: 200%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=date] {
+            width: 200%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=datetime-local] {
+            width: 200%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=Button] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: center;
+        }
+
+        input[type=Button]:hover {
+            background-color: #45a049;
+        }
+
+        @media only screen and (max-width: 620px) {
+
+            /* For mobile phones: */
+            .menu,
+            .main,
+            .left {
+                width: 100%;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #ccccb3;
+            border-radius: 4px;
+            border: 1px solid black;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a,
+        .dropbtn {
+            display: inline-block;
+            color: black;
+            text-align: center;
+            padding: 13px 36px;
+            text-decoration: none;
+        }
+
+        li a:hover,
+        .dropdown:hover .dropbtn {
+            background-color: #b8b894;
+
+        }
+
+        li.dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border: 1px solid black;
+            border-radius: 4px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ccccb3;
+            color: black;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Style the tab */
+        .tab {
+            float: left;
+            border: 1px solid #ccc;
+            background-color: #ccccb3;
+            width: 15%;
+            height: 390px;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            display: block;
+            background-color: inherit;
+            color: black;
+            padding: 22px 16px;
+            width: 100%;
+            border: none;
+            outline: none;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 13px;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #b8b894;
+        }
+
+        /* Create an active/current "tab button" class */
+        .tab button.active {
+            background-color: #999966;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            float: left;
+            padding: 0px 12px;
+            border: 1px solid #ccc;
+            width: 85%;
+            border-left: none;
+            height: 390px;
+            background-color: #ebebe1;
+            overflow-x: scroll;
+        }
+
+        .tabcontent p {
+            margin-top: 20px;
+            margin-left: 20px;
+            background-color: white;
+            padding: 8px;
+            display: block;
+            width: 92%;
+            height: 280px;
+            color: black;
+            border-radius: 5px;
+            border-style: solid;
+            overflow-x: scroll;
+			user-select: all;
+        }
+
+        td {
+            border: 1px solid #999;
+            padding: 0.6rem;
+            background-color: white;
+            text-align: center;
+            font-size: 13px;
+            width: 50%;
+        }
+
+        th {
+            border: 1px solid #999;
+            padding: 0.6rem;
+            text-align: center;
+            font-size: 13px;
+            width: 50%;
+            background-color: #ccc
+        }
+    </style>
+    <script>
+        function testVariable() {
+            debugger
+            var strText = document.getElementById("year").value;
+            var strText1 = document.getElementById("event").value;
+            var strText2 = document.getElementById("eventType").value;
+            var resevent = document.getElementById("resevent").value;
+            var reseventType = document.getElementById("reseventType").value;			
+            var strText3 = document.getElementById("msg").value;
+			var bmsg = document.getElementById("bmsg").value;
+            var strText4 = document.getElementById("mrn").value;
+            var strText6 = document.getElementById("fname").value;
+            var strText7 = document.getElementById("mname").value;
+            var strText8 = document.getElementById("lname").value;
+            var strText9 = document.getElementById("dob").value;
+            var strdobyear = strText9.substring(0, 4);
+            var strdobmonth = strText9.substring(5, 7);
+            var strdobday = strText9.substring(8, 10);
+            var strdob = strdobyear + strdobmonth + strdobday;
+            var ptdob = strdobday + '/' + strdobmonth + '/' + strdobyear;
+            var strText15 = document.getElementById("sex").value;
+            var race = document.getElementById("race").value;
+            var strText10 = document.getElementById("add1").value;
+            var strText11 = document.getElementById("add2").value;
+            var strText12 = document.getElementById("city").value;
+            var strText13 = document.getElementById("state").value;
+            var strText14 = document.getElementById("zip").value;
+            var homephone = document.getElementById("homephone").value;
+            var mobilephone = document.getElementById("mobilephone").value;
+            var email = document.getElementById("email").value;
+            var workphone = document.getElementById("workphone").value;
+            var wphext = document.getElementById("wphext").value;
+            var maritalstatus = document.getElementById("maritalstatus").value;
+            var accountno = document.getElementById("accountno").value;
+            var nk1fname = document.getElementById("nk1fname").value;
+            var nk1lname = document.getElementById("nk1lname").value;
+            var relation = document.getElementById("relation").value;
+            var nk1add1 = document.getElementById("nk1add1").value;
+            var nk1add2 = document.getElementById("nk1add2").value;
+            var nk1city = document.getElementById("nk1city").value;
+            var nk1state = document.getElementById("nk1state").value;
+            var nk1zip = document.getElementById("nk1zip").value;
+            var nk1homephone = document.getElementById("nk1homephone").value;
+            var nk1workphone = document.getElementById("nk1workphone").value;
+            var location = document.getElementById("location").value;
+            var admitdate = document.getElementById("admitdate").value;
+            var admyear = admitdate.substring(0, 4);
+            var admmonth = admitdate.substring(5, 7);
+            var admday = admitdate.substring(8, 10);
+            var admhour = admitdate.substring(11, 13);
+            var admmins = admitdate.substring(14, 16);
+            var admitdatetime = admyear + admmonth + admday + admhour + admmins;
+            var placerorderno = document.getElementById("placerorderno").value;
+            var obserdate = document.getElementById("obserdate").value;
+            var obseryear = obserdate.substring(0, 4);
+            var obsermonth = obserdate.substring(5, 7);
+            var obserday = obserdate.substring(8, 10);
+            var obserhour = obserdate.substring(11, 13);
+            var obsermins = obserdate.substring(14, 16);
+            var obserdatetime = obseryear + obsermonth + obserday + obserhour + obsermins;
+            var obspdf = obserday + '/' + obsermonth + '/' + obseryear + ' ' + obserhour + ':' + obsermins + ':00';
+
+            var result = ' ' + ' ' +
+                ' ' + '<b>MSH</b>|^~\\&||HNA500|||' + strText + '||' + strText1 + '^' + strText2 + '|' + strText3 + '||2.3' + '<br>' + ' ' + ' ' +
+                '<b>EVN</b>|' + strText2 + '|' + strText + '|||^XKelley^Jason^^^^^^^NYSIIS||' + '<br>' + ' ' + ' ' +
+                '<b>PID</b>||' + strText4 + '^^^MRN^MRN^SOARF|' + strText4 + '^^^MRN^MR^SOARF' + '||' + strText8 + '^' + strText6 + '^' + strText7 + '^^^^Alternate||' + strdob + '|' + strText15 + '||' + race + '|' + strText10 + '^' + strText11 + '^' + strText12 + '^' + strText13 + '^' + strText14 + '^' + 'US^Home||^^^' + email + '~' + homephone + '^PRNPH^Phone~' + mobilephone + '^ORNCP|' + workphone + '^WPNPH^^^^^^' + wphext + '|ENG|' + maritalstatus + '||' + accountno + '^^^FIN^FIN NBR|||||||||ND' + '<br>' + ' ' + ' ' +
+                '<b>NK1</b>|1|' + nk1lname + '^' + nk1fname + '^^^^^Alternate|' + relation + '|' + nk1add1 + '^' + nk1add2 + '^' + nk1city + '^' + nk1state + '^' + nk1zip + '^US^HOME^^|' + nk1homephone + '^PRNPH|' + nk1workphone + '^WPNPH|Emergency|' + '<br>' + ' ' + ' ' +
+                '<b>PV1</b>|1|Outpatient|' + location + '^^^' + location + '^^Radiology^' + location + '|||||1234567890^CERNER^CERNER^^^^^^NPI^NYSIIS^^^National Provider Identifier~SYSTEMCERNER^CERNER^CERNER^^^^^^PRN^NYSIIS^^^External Identifier||||||||||Clinic|' + accountno + '^^^FIN^FIN NBR|Self-Pay|||||||||||||||||||' + location + '|||||' + admitdatetime + '|' + '<br>' + ' ' + ' ' + '<b>PV2</b>||||||||' + admitdatetime + '||0|||||||||||||^^3194062';
+
+            document.getElementById("p1").innerHTML = result;
+
+            var ResultORU = ' ' + ' ' +
+                ' ' + '<b>MSH</b>|^~\\&|IHN_NJ|IUC Woolwich|HUB|HUB|' + strText + '||' + resevent + '^' + reseventType + '|' + bmsg + '||2.3' + '<br>' + ' ' + ' ' +
+                '<b>ZAD</b>|Inspira Urgent Care Woolwich|660 Woodbury-Glassboro Road^Sewell^NJ^08080' + '<br>' + ' ' + ' ' + '<b>PID</b>||' + strText4 + '^^^MRN^MRN^SOARF|' + strText4 + '^^^MRN^MR^SOARF' + '||' + strText8 + '^' + strText6 + '^' + strText7 + '^^^^Alternate||' + strdob + '|' + strText15 + '||' + race + '|' + strText10 + '^' + strText11 + '^' + strText12 + '^' + strText13 + '^' + strText14 + '^' + 'US^Home||^^^' + email + '~' + homephone + '^PRNPH^Phone~' + mobilephone + '^ORNCP|' + workphone + '^WPNPH^^^^^^' + wphext + '|ENG|' + maritalstatus + '||' + accountno + '^^^FIN^FIN NBR|' + '<br>' + ' ' + ' ' + '<b>PV1</b>|1|Outpatient|' + location + '^^^' + location + '^^Radiology^' + location + '||||||||||||||||||||||||||||||||||||' + location + '|||||' + admitdatetime + '00' + '|' + '<br>' + ' ' + ' ' + '<b>OBR</b>|1|' + placerorderno + '^HNAM_ORDERID||^QCOV2FLUAB|||' + obserdatetime + '00' + '|||||||||1760465603^Herman^Gregory^^^M.D.^^^NPI^Personnel^^^National Provider Identifier||||||' + obserdatetime + '00' + '|||F' + '<br>' + ' ' + ' ' + '<b>OBX</b>|1|TX|3148882129^SARS-CoV-2 RNA-Q||NOT DETECTED||NOT DETECTED^NOT DETECTED||||C' + '<br>' + ' ' + ' ' + '<b>NTE</b>|1|Order Comment|**Do Not Send COVID-19  / Viral Samples via Pneumatic Tube System**' + '<br>' + ' ' + ' ' +
+                '<b>NTE</b>|1|Result Comment' + '<br>' + ' ' + ' ' +
+                '<b>NTE</b>|2|Result Comment|Specimen Received d/t:  ' + obspdf + '<br>' + ' ' + ' ' +
+                '<b>NTE</b>|3|Result Comment' + '<br>' + ' ' + ' ' +
+                '<b>NTE</b>|4|Result Comment' + '<br>' + ' ' + ' ' +
+                '<b>NTE</b>|5|Result Comment|Lab test performed by:' + '<br>' + ' ' + ' ' +
+                '<b>NTE</b>|6|Result Comment|Quest Diagnostics-Lenexa' + '<br>' + ' ' + ' ' +
+                '<b>NTE</b>|7|Result Comment|10101 Renner Blvd' + '<br>' + ' ' + ' ' +
+                '<b>NTE</b>|8|Result Comment|Lenexa, KS 66219-9752' + '<br>' + ' ' + ' ' +
+                '<b>NTE</b>|9|Result Comment|William Becker D.O., MPH';
+
+            document.getElementById("p3").innerHTML = ResultORU;
+
+            var summary = '<br/>' + ' ' + ' ' + '<b><center>Patient Details:</center></b>' + '<br/>' + ' ' + ' ' +
+                ' ' + '<center>' + '<table>' +
+                '<thead>' +
+                '<tr>' +
+                '<th>' + '<b>' + 'Name' + '</b>' + '</th>' +
+                '<th>' + '<b>' + 'Value' + '</b>' + '</th>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'Message Event:' + '</b>' + '</td>' +
+                '<td>' + strText1 + '^' + strText2 + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'Message Control ID:' + '</b>' + '</td>' +
+                '<td>' + strText3 + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'Patient ID:' + '</b>' + '</td>' +
+                '<td>' + strText4 + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'Patient Name:' + '</b>' + '</td>' +
+                '<td>' + strText6 + ' ' + strText7 + ' ' + strText8 + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'Date of Birth (DD/MM/YYYY):' + '</b>' + '</td>' +
+                '<td>' + ptdob + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'Location:' + '</b>' + '</td>' +
+                '<td>' + location + '</td>' +
+                '</tr>' +
+                '</tbody>' +
+                '</table>' + '</center>';
+            document.getElementById("Notes").innerHTML = summary;
+
+            var network = '<br/>' + ' ' + ' ' + '<b><center>Demo Network Details:</center></b>' + '<br/>' + ' ' + ' ' +
+                ' ' + '<center>' + '<table>' +
+                '<thead>' +
+                '<tr>' +
+                '<th>' + '<b>' + 'Message Type' + '</b>' + '</th>' +
+                '<th>' + '<b>' + 'IP Address' + '</b>' + '</th>' +
+                '<th>' + '<b>' + 'Port' + '</b>' + '</th>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'ADT:' + '</b>' + '</td>' +
+                '<td>' + '10.8.1.24' + '</td>' +
+                '<td>' + '9500' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>' + '<b>' + 'ORU:' + '</b>' + '</td>' +
+                '<td>' + '10.8.1.24' + '</td>' +
+                '<td>' + '9510' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '</tbody>' +
+                '</table>' + '</center>';
+            document.getElementById("Network").innerHTML = network;
+        }
+    </script>
+</head>
+
+<body style="background-color: FloralWhite;">
+
+    <div class="title" style="background-color: #e6ebe1">
+        <h1>Inspira Urgent Care - Covid Result Testing</h1>
+    </div>
+
+    <ul>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn"><i class="fa fa-plus-circle" style="margin-right:10px; margin-bottom: 10px;"></i>Geisinger</a>
+            <div class="dropdown-content">
+                <a href="Geisinger.html">Geisinger</a>
+                <a href="Geisinger_Merge.html">Geisinger - Merge</a>
+            </div>
+		</li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn"><i class="fa fa-plus-circle" style="margin-right:10px; margin-bottom: 10px;"></i>UPMC EU</a>
+            <div class="dropdown-content">
+                <a href="EU - ADT Inpatient.html">Inpatient - Multicampus</a>
+                <a href="#">Outpatient - Multicampus</a>
+            </div>
+		</li>	
+        <li class="dropdown" style="background-color:#999966">
+            <a href="javascript:void(0)" class="dropbtn"><i class="fa fa-plus-circle" style="margin-right:10px; margin-bottom: 10px;"></i>Inspira</a>
+            <div class="dropdown-content">
+                <a href="Urgent Care.html">Urgent Care</a>
+                <a href="Inspira Medical Group.html">IMG</a>
+                <a href="Urgent Care Covid Result.html">UC Covid</a>
+                <a href="IMG Covid Result.html">IMG Covid</a>
+            </div>
+        </li>
+		<li><a href="AHS.html"><i class="fa fa-plus-circle"style="margin-right:10px; margin-bottom: 10px;"></i><b>AHS</b></a></li>
+    </ul>
+
+    <div class="menu">
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'ADT')" id="defaultOpen"><i class="fa fa-user-circle-o" style="margin-right:10px;"></i><b>ADT</b></button>
+            <button class="tablinks" onclick="openCity(event, 'ORU')"><i class="fa fa-flask" style="margin-right:10px;"></i><b>ORU</b></button>
+            <button class="tablinks" onclick="openCity(event, 'Notes')"><i class="fa fa-file-text-o" style="margin-right:10px;"></i><b>Notes</b></button>
+            <button class="tablinks" onclick="openCity(event, 'Network')"><i class="fa fa-sitemap" style="margin-right:10px;"></i><b>Network</b></button>
+        </div>
+
+        <div id="ADT" class="tabcontent">
+            <p id="p1" style="font-size: 13px;"></p>
+        </div>
+        <div id="ORU" class="tabcontent">
+            <p id="p3" style="font-size: 13px;"></p>
+        </div>
+        <div id="Notes" class="tabcontent"></div>
+        <div id="Network" class="tabcontent"></div>
+
+        <script>
+            function openCity(evt, cityName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(cityName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+
+            // Get the element with id="defaultOpen" and click on it
+            document.getElementById("defaultOpen").click();
+        </script>
+    </div>
+
+  <div class="left">
+        <form class="container">
+			<div class="subheader"><i class="fa fa-envelope-o" style="margin-right:10px;"></i>Message Header</div><br />
+            <label for="createdon"><b>MSH Date/Time:</b></label>
+            <input type="text" name="createdon" id="year">
+            <script type="text/javascript">
+                var year = new Date();
+                document.getElementById("year").value = (checkZero(year.getFullYear() + "")) +
+                    (checkZero(year.getMonth() + 1 + "")) +
+                    (checkZero(year.getDate() + "")) +
+                    (checkZero(year.getHours() + "")) +
+                    (checkZero(year.getMinutes() + "")) +
+                    (checkZero(year.getSeconds() + ""));
+
+                function checkZero(data) {
+                    if (data.length == 1) {
+                        data = "0" + data;
+                    }
+                    return data;
+                }
+            </script>
+            <label for="event"><b>Message Event:</b></label>
+            <select id="event" name="Event">
+                <option value="ADT">ADT</option>
+            </select><br />
+            <label for="eventType"><b>Event Type:</b></label>
+            <select id="eventType" name="Event">
+                <option value="A04">A04</option>
+            </select><br />
+            <label for="messagecontrollid"><b>Control ID:</b></label>
+            <input name="messagecontrollid" id="msg" type="text" /><br /><br />
+
+            <script type="text/javascript">
+                var msg = new Date();
+                document.getElementById("msg").value = "UC" + (msg.getMonth() + 1 + "") + (msg.getDate()) +
+                    (msg.getFullYear() + "") + (msg.getHours()) + (msg.getMinutes() + "") + (msg.getSeconds() + "");
+            </script>
+
+            <label for="resevent"><b>Result Message Event:</b></label>
+            <select id="resevent" name="resevent">
+                <option value="ORU">ORU</option>
+            </select><br />
+            <label for="reseventType"><b>Result Event Type:</b></label>
+            <select id="reseventType" name="reseventType">
+                <option value="R01">R01</option>
+            </select><br />
+            <label for="bmsg"><b>Result Control ID:</b></label>
+            <input name="bmsg" id="bmsg" type="text" /><br /><br /><br />
+
+            <script type="text/javascript">
+                var bmsg = new Date();
+                document.getElementById("bmsg").value = "UCO" + (bmsg.getMonth() + 1 + "") + (bmsg.getDate()) +
+                    (bmsg.getFullYear() + "") + (bmsg.getHours()) + (bmsg.getMinutes() + "") + (bmsg.getSeconds() + "");
+            </script>
+
+			<div class="subheader"><i class="fa fa-user-o" style="margin-right:10px;"></i>Patient Details</div><br />
+            <label for="mrn"><b>Patient ID:</b></label>
+            <input name="mrn" id="mrn" type="text" /><br />
+            <label for="fname"><b>First Name:</b></label>
+            <input name="fname" id="fname" type="text" /><br />
+            <label for="mname"><b>Middle Name:</b></label>
+            <input name="mname" id="mname" type="text" /><br />
+            <label for="lname"><b>Last Name:</b></label>
+            <input name="lname" id="lname" type="text" /><br />
+            <label for="dob"><b>Date of Birth:</b></label>
+            <input type="date" id="dob" name="dob"></br />
+            <label for="sex"><b>Gender:</b></label>
+            <select id="sex" name="sex">
+                <option value="M">Male</option>
+                <option value="U">Unknown</option>
+                <option value="F">Female</option>
+            </select><br />
+            <label for="race"><b>Race:</b></label>
+            <select id="race" name="race">
+                <option value="WHITE">White</option>
+                <option value="GUACHA">Guamanian or Chamorro</option>
+                <option value="ASIAN">Asian</option>
+                <option value="Blck/African Amer. and Amer. Ind/Alaskan">Blck/African Amer. and Amer. Ind/Alaskan</option>
+                <option value="CHINESE">Chinese</option>
+                <option value="BLACK">Black or African American</option>
+                <option value="AMIND">American Indian or Alaska Native</option>
+                <option value="HISPN">Hispanic</option>
+                <option value="OTHER PACIFIC ISLANDER">Other Pacific Islander</option>
+                <option value="FILIPINO">Filipino</option>
+                <option value="WHIBLACAFRIAME">White and Black or African American</option>
+                <option value="OTHER">Other Race</option>
+                <option value="JAPANESE">Japanese</option>
+                <option value="DECLINED TO ANSWER">Declined to Answer</option>
+                <option value="WHIAMERINDALASNAT">White and American Indian or Alaskan Nat</option>
+                <option value="KOREAN">Korean</option>
+                <option value="PCFIS">Native Hawaiian or Pacific Islander</option>
+                <option value="WHITEASIAN">White and Asian</option>
+                <option value="SAMOAN">Samoan</option>
+                <option value="U">Unknown</option>
+            </select><br />
+            <label for="add1"><b>Address Line 1:</b></label>
+            <input name="add1" id="add1" type="text" /><br />
+            <label for="add2"><b>Address Line 2:</b></label>
+            <input name="add2" id="add2" type="text" /><br />
+            <label for="city"><b>City:</b></label>
+            <input name="city" id="city" type="text" /><br />
+            <label for="state"><b>State:</b></label>
+            <input name="state" id="state" type="text" /><br />
+            <label for="zip"><b>Zip:</b></label>
+            <input name="zip" id="zip" type="text" /><br />
+            <label for="homephone"><b>Home Phone:<b></label>
+            <input name="homephone" id="homephone" type="text" /><br />
+            <label for="mobilephone"><b>Mobile Phone:<b></label>
+            <input name="mobilephone" id="mobilephone" type="text" /><br />
+            <label for="email"><b>Email:<b></label>
+            <input name="email" id="email" type="text" /><br />
+            <label for="workphone"><b>Work Phone:<b></label>
+            <input name="workphone" id="workphone" type="text" /><br />
+            <label for="wphext"><b>Work Phone Extension:<b></label>
+            <input name="wphext" id="wphext" type="text" /><br />
+            <label for="maritalstatus"><b>Marital Status:</b></label>
+            <select id="maritalstatus" name="maritalstatus">
+                <option value="M">Married</option>
+                <option value="D">Divorced</option>
+                <option value="S">Single</option>
+                <option value="U">Unknown</option>
+                <option value="W">Widow</option>
+                <option value="P">Life Partner</option>
+            </select><br />
+            <label for="accountno"><b>Account Number:<b></label>
+            <input name="accountno" id="accountno" type="text" /><br /><br />
+            <div class="subheader"><i class="fa fa-male" style="margin-right: 10px;"></i>Next of Kin Details</div><br/>
+
+            <script>
+                function copyTextValue(box) {
+                    var text1 = box.checked ? document.getElementById("fname").value : '';
+                    document.getElementById("nk1fname").value = text1;
+                    var text2 = box.checked ? document.getElementById("lname").value : '';
+                    document.getElementById("nk1lname").value = text2;
+                    var text3 = box.checked ? document.getElementById("add1").value : '';
+                    document.getElementById("nk1add1").value = text3;
+                    var text4 = box.checked ? document.getElementById("add2").value : '';
+                    document.getElementById("nk1add2").value = text4;
+                    var text5 = box.checked ? document.getElementById("city").value : '';
+                    document.getElementById("nk1city").value = text5;
+                    var text6 = box.checked ? document.getElementById("state").value : '';
+                    document.getElementById("nk1state").value = text6;
+                    var text7 = box.checked ? document.getElementById("zip").value : '';
+                    document.getElementById("nk1zip").value = text7;
+                    var text8 = box.checked ? document.getElementById("homephone").value : '';
+                    document.getElementById("nk1homephone").value = text8;
+                    var text9 = box.checked ? document.getElementById("workphone").value : '';
+                    document.getElementById("nk1workphone").value = text9;
+                }
+            </script>
+            <input type="checkbox" name="check1" onchange="copyTextValue(this);"> Copy Patient Values.</input><br /><br/>
+
+			
+            <label for="nk1fname"><b>First Name:</b></label>
+            <input name="nk1fname" id="nk1fname" type="text" /><br />
+            <label for="nk1lname"><b>Last Name:</b></label>
+            <input name="nk1lname" id="nk1lname" type="text" /><br />
+            <label for="relation"><b>Relationship:</b></label>
+            <select id="relation" name="relation">
+                <option value="AUNT">Aunt</option>
+                <option value="BROTH">Brother</option>
+                <option value="BROINLAW">Brother-in-law</option>
+                <option value="DAUG">Daughter</option>
+                <option value="FATHR">Father</option>
+                <option value="FRIEND">Friend</option>
+                <option value="GFTHR">Grandfather</option>
+                <option value="GMTHR">Grandmother</option>
+                <option value="GUARD">Guardian</option>
+                <option value="HUSB">Husband</option>
+                <option value="MOTHER">Mother</option>
+                <option value="NEPHEW">Nephew</option>
+                <option value="NIECE">Niece</option>
+                <option value="OTHER">Other</option>
+                <option value="NSP">Not Specified</option>
+                <option value="PTN">Parent</option>
+                <option value="SISINLAW">Sister-in-law</option>
+                <option value="SON">Son</option>
+                <option value="SDAUG">Step Daughter</option>
+                <option value="SFATHR">Step Father</option>
+                <option value="SMOTHER">Step Mother</option>
+                <option value="SSON">Step Son</option>
+                <option value="SUPERIOR">Superior</option>
+                <option value="UNCLE">Uncle</option>
+                <option value="WIFE">Wife</option>
+            </select><br />
+            <label for="nk1add1"><b>Address Line 1:</b></label>
+            <input name="nk1add1" id="nk1add1" type="text" /><br />
+            <label for="nk1add2"><b>Address Line 2:</b></label>
+            <input name="nk1add2" id="nk1add2" type="text" /><br />
+            <label for="nk1city"><b>City:</b></label>
+            <input name="nk1city" id="nk1city" type="text" /><br />
+            <label for="nk1state"><b>State:</b></label>
+            <input name="nk1state" id="nk1state" type="text" /><br />
+            <label for="nk1zip"><b>Zip:</b></label>
+            <input name="nk1zip" id="nk1zip" type="text" /><br />
+            <label for="nk1homephone"><b>Home Phone:</b></label>
+            <input name="nk1homephone" id="nk1homephone" type="text" /><br />
+            <label for="nk1workphone"><b>Work Phone:</b></label>
+            <input name="nk1workphone" id="nk1workphone" type="text" /><br /><br />
+			<div class="subheader"><i class="fa fa-hospital-o" style="margin-right: 10px;"></i>Patient Visit</div><br />
+            <label for="location"><b>Location:</b></label>
+            <select id="location" name="location">
+                <option value="IUC Woolwich">Woolwich</option>
+                <option value="IUC Glassboro">Glassboro</option>
+                <option value="IUC Haddon Twp">Haddon Twp</option>
+                <option value="IUC Tomlin Station">Tomlin Station</option>
+                <option value="IUC Mantua">Mantua</option>
+                <option value="IUC Laurel Springs">Laurel Springs</option>
+                <option value="IUC Williamstown">Williamstown</option>
+                <option value="IUC Vineland">Vineland</option>
+                <option value="IUC Wash Twshp">Wash Twshp</option>
+                <option value="IUC Somerdale">Somerdale</option>
+                <option value="IUC East Vineland">East Vineland</option>
+            </select><br />
+            <label for="admitdate"><b>Admit Date/Time:</b></label>
+            <input type="datetime-local" id="admitdate" name="admitdate"><br /><br /><br />
+            <div class="subheader"><i class="fa fa-stethoscope" style="margin-right: 10px;"></i> Observation Details</div><br />
+            <label for="placerorderno"><b>Placer Order Number:</b></label>
+            <input name="placerorderno" id="placerorderno" type="text" /><br />
+            <label for="obserdate"><b>Observation Date/Time:</b></label>
+            <input type="datetime-local" id="obserdate" name="obserdate"><br />
+            <br /><br />
+            <input id="btn1" type="Button" value="Submit" onclick="testVariable()">
+        </form>
+    </div>
+</body>
+
+</html>
