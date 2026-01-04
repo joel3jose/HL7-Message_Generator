@@ -1,4 +1,4 @@
-# HL7 Creator Tool
+# HL7 Message Generator Tool
 
 A web-based tool designed to simplify HL7 message creation and testing for healthcare integration workflows.
 
